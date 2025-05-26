@@ -1,14 +1,12 @@
 const strings = {
-  appTitle: 'خزانه',
-  addAsset: 'افزودن دارایی',
+  appName: 'خزانه',
+  home: 'خانه',
   portfolio: 'پرتفو',
-  assetName: 'نام دارایی',
-  assetAmount: 'مقدار',
-  submit: 'ثبت',
+  addAsset: 'افزودن دارایی',
   settings: 'تنظیمات',
-  totalValue: 'ارزش کل',
-  loading: 'در حال بارگذاری...',
-  noAssets: 'هنوز دارایی ثبت نشده است.',
+  totalValue: 'ارزش کل دارایی‌ها',
+  noData: 'هیچ دارایی‌ای ثبت نشده است.',
+  addNow: 'هم‌اکنون اضافه کنید',
 };
 
 export default strings;
