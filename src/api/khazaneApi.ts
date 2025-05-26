@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://khazane-backend.onrender.com'; // اگر دامنه‌ات نهایی نیست، لوکال بذار
+const BASE_URL = 'https://khazane-backend.onrender.com';
 
 const api = axios.create({
   baseURL: BASE_URL,
