@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import { getAllAssets } from '../api/khazaneApi';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import colors from '../constants/colors';
 
-export default function PortfolioScreen() {
-  const [assets, setAssets] = useState([]);
-
-  useEffect(() => {
-    getAllAssets().then(data => setAssets(data));
-  }, []);
-
+const PortfolioScreen = () => {
   return (
-    <View style={{ flex: 1, padding: 16 }}>
-      <Text>📦 دارایی‌ها</Text>
-      <FlatList
-        data={assets}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <View style={{ padding: 12, marginVertical: 4, backgroundColor: '#eee' }}>
-            <Text>{item.name}</Text>
-            <Text>{item.amount}</Text>
-          </View>
-        )}
-      />
+    <View style={styles.container}>
+      <Text style={styles.text}>پرتفوی شما هنوز خالی است.</Text>
     </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 18,
+    color: colors.primary,
+  },
+});
+
+export default PortfolioScreen;
