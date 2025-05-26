@@ -1,21 +1,54 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SplashScreen from '../screens/SplashScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
 import PortfolioScreen from '../screens/PortfolioScreen';
 import AddAssetScreen from '../screens/AddAssetScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import strings from '../constants/strings';
+import { Ionicons } from '@expo/vector-icons';
+import colors from '../constants/colors';
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-export default function AppNavigator() {
+const AppNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Splash">
-      <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Portfolio" component={PortfolioScreen} />
-      <Stack.Screen name="AddAsset" component={AddAssetScreen} />
-      <Stack.Screen name="Settings" component={SettingsScreen} />
-    </Stack.Navigator>
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => {
+            let iconName: string;
+
+            switch (route.name) {
+              case strings.home:
+                iconName = 'home-outline';
+                break;
+              case strings.portfolio:
+                iconName = 'pie-chart-outline';
+                break;
+              case strings.addAsset:
+                iconName = 'add-circle-outline';
+                break;
+              case strings.settings:
+                iconName = 'settings-outline';
+                break;
+              default:
+                iconName = 'help';
+            }
+
+            return <Ionicons name={iconName as any} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: colors.primary,
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name={strings.home} component={HomeScreen} />
+        <Tab.Screen name={strings.portfolio} component={PortfolioScreen} />
+        <Tab.Screen name={strings.addAsset} component={AddAssetScreen} />
+        <Tab.Screen name={strings.settings} component={SettingsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default AppNavigator;
