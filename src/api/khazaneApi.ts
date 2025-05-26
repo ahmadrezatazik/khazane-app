@@ -1,13 +1,15 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://khazane-backend.onrender.com'; // آدرس سرور خودت رو بذار
+const BASE_URL = 'https://khazane-backend.onrender.com'; // اگر دامنه‌ات نهایی نیست، لوکال بذار
 
-export const getAllAssets = async () => {
-  const response = await axios.get(`${API_BASE_URL}/portfolio`);
-  return response.data;
-};
+const api = axios.create({
+  baseURL: BASE_URL,
+  timeout: 5000,
+});
 
-export const addAsset = async (assetData: any) => {
-  const response = await axios.post(`${API_BASE_URL}/portfolio`, assetData);
-  return response.data;
-};
+export const getCryptoData = () => api.get('/crypto');
+export const getGoldData = () => api.get('/gold');
+export const getForexData = () => api.get('/forex');
+export const getStockData = () => api.get('/stock');
+
+export default api;
