@@ -1,15 +1,27 @@
-import React, { useEffect } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList } from 'react-native';
+import { getAllAssets } from '../api/khazaneApi';
 
-export default function PortfolioScreen({ navigation }) {
+export default function PortfolioScreen() {
+  const [assets, setAssets] = useState([]);
+
   useEffect(() => {
-    setTimeout(() => navigation.replace('Home'), 1500);
+    getAllAssets().then(data => setAssets(data));
   }, []);
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>💰 خزانه</Text>
-      <ActivityIndicator size="large" />
+    <View style={{ flex: 1, padding: 16 }}>
+      <Text>📦 دارایی‌ها</Text>
+      <FlatList
+        data={assets}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <View style={{ padding: 12, marginVertical: 4, backgroundColor: '#eee' }}>
+            <Text>{item.name}</Text>
+            <Text>{item.amount}</Text>
+          </View>
+        )}
+      />
     </View>
   );
 }
