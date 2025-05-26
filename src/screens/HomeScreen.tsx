@@ -1,12 +1,27 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import colors from '../constants/colors';
+import strings from '../constants/strings';
 
-export default function HomeScreen({ navigation }) {
+const HomeScreen = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>📊 داشبورد خزانه</Text>
-      <Button title="مشاهده پرتفو" onPress={() => navigation.navigate('Portfolio')} />
-      <Button title="افزودن دارایی" onPress={() => navigation.navigate('AddAsset')} />
+    <View style={styles.container}>
+      <Text style={styles.text}>{strings.appName}</Text>
     </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 24,
+    color: colors.primary,
+  },
+});
+
+export default HomeScreen;
