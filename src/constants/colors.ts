@@ -1,10 +1,12 @@
 const colors = {
-  primary: '#0D1B2A',       // سرمه‌ای اصلی
-  secondary: '#1B263B',     // سرمه‌ای روشن‌تر
-  background: '#F5F5F5',    // خاکستری خیلی روشن
+  primary: '#1E2A78', // سرمه‌ای
+  secondary: '#4A4A4A',
+  background: '#F5F6FA',
   white: '#FFFFFF',
-  text: '#1E1E1E',
-  accent: '#FFD700',        // طلایی برای تاکید
+  black: '#000000',
+  green: '#27AE60',
+  red: '#E74C3C',
+  gray: '#BDC3C7',
 };
 
 export default colors;
