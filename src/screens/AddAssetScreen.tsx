@@ -1,15 +1,22 @@
-import React, { useEffect } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button } from 'react-native';
+import { addAsset } from '../api/khazaneApi';
 
 export default function AddAssetScreen({ navigation }) {
-  useEffect(() => {
-    setTimeout(() => navigation.replace('Home'), 1500);
-  }, []);
+  const [name, setName] = useState('');
+  const [amount, setAmount] = useState('');
+
+  const handleSubmit = async () => {
+    await addAsset({ name, amount: parseFloat(amount) });
+    navigation.navigate('Portfolio');
+  };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>💰 خزانه</Text>
-      <ActivityIndicator size="large" />
+    <View style={{ padding: 16 }}>
+      <Text>افزودن دارایی</Text>
+      <TextInput placeholder="نام دارایی" value={name} onChangeText={setName} />
+      <TextInput placeholder="مقدار" value={amount} onChangeText={setAmount} keyboardType="numeric" />
+      <Button title="افزودن" onPress={handleSubmit} />
     </View>
   );
 }
