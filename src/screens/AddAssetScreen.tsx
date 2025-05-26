@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
-import { addAsset } from '../api/khazaneApi';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import colors from '../constants/colors';
 
-export default function AddAssetScreen({ navigation }) {
-  const [name, setName] = useState('');
-  const [amount, setAmount] = useState('');
-
-  const handleSubmit = async () => {
-    await addAsset({ name, amount: parseFloat(amount) });
-    navigation.navigate('Portfolio');
-  };
-
+const AddAssetScreen = () => {
   return (
-    <View style={{ padding: 16 }}>
-      <Text>افزودن دارایی</Text>
-      <TextInput placeholder="نام دارایی" value={name} onChangeText={setName} />
-      <TextInput placeholder="مقدار" value={amount} onChangeText={setAmount} keyboardType="numeric" />
-      <Button title="افزودن" onPress={handleSubmit} />
+    <View style={styles.container}>
+      <Text style={styles.text}>افزودن دارایی در آینده توسعه می‌یابد.</Text>
     </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 16,
+    color: colors.black,
+  },
+});
+
+export default AddAssetScreen;
