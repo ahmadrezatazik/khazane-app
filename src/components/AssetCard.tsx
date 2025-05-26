@@ -1,18 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import colors from '../constants/colors';
-import formatNumber from '../utils/formatNumber';
+import { formatNumber } from '../utils/formatNumber';
 
-interface AssetCardProps {
+type AssetCardProps = {
   name: string;
-  amount: number;
-}
+  value: number;
+  unit: string;
+};
 
-const AssetCard: React.FC<AssetCardProps> = ({ name, amount }) => {
+const AssetCard = ({ name, value, unit }: AssetCardProps) => {
   return (
     <View style={styles.card}>
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.amount}>{formatNumber(amount)} تومان</Text>
+      <Text style={styles.value}>
+        {formatNumber(value)} {unit}
+      </Text>
     </View>
   );
 };
@@ -21,21 +24,21 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.white,
     padding: 16,
-    marginVertical: 8,
     borderRadius: 12,
     shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    elevation: 2,
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    marginBottom: 12,
   },
   name: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: 'bold',
     color: colors.primary,
   },
-  amount: {
+  value: {
     fontSize: 14,
-    color: colors.text,
+    color: colors.black,
     marginTop: 4,
   },
 });
