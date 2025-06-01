@@ -1,4 +1,4 @@
-name: Build APK 2
+name: Build APK
 
 on:
   push:
@@ -38,9 +38,10 @@ jobs:
       - name: Build Release APK
         run: cd android && ./gradlew assembleRelease
 
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@2e1b97f0dd1ba0c96f2b4d2769a2160dc9a3b6c4
-
+      - name: Create GitHub Release with APK
+        uses: ncipollo/release-action@v1
         with:
-          name: khazane-app-release-apk
-          path: android/app/build/outputs/apk/release/app-release.apk
+          tag: v1.${{ github.run_number }}
+          name: Khazane APK Build ${{ github.run_number }}
+          artifacts: android/app/build/outputs/apk/release/app-release.apk
+          token: ${{ secrets.GITHUB_TOKEN }}
